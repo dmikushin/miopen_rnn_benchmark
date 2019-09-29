@@ -24,7 +24,7 @@ NVCC_ARCH_ARGS=$(foreach a,$(subst $(COMMA), ,$(ARCH)),--generate-code arch=$(pa
 
 .PHONY=all gemm conv rnn all_reduce nccl_single nccl_mpi clean
 
-all: gemm conv rnn all_reduce
+all: gemm sparse_npy
 
 gemm:
 	$(MKDIR) $(BIN_DIR) 
@@ -52,6 +52,10 @@ sparse:
 	$(MKDIR) $(BIN_DIR) 
 	$(CUDA_PATH)/bin/$(NVCC) sparse_bench.cu -o $(BIN_DIR)/sparse_bench -I $(KERNELS_DIR) -I $(CUDA_PATH)/include -L $(BLAS_PATH) -l$(BLAS_LIBRARY) -L $(CUDA_LIB64) -lcurand -lcusparse $(NVCC_ARCH_ARGS) -std=c++11
 
+
+sparse_npy:
+	$(MKDIR) $(BIN_DIR) 
+	$(CUDA_PATH)/bin/$(NVCC) sparse_bench_npy.cu -o $(BIN_DIR)/sparse_bench_npy -I/persist/cnpy/ -I $(KERNELS_DIR) -I $(CUDA_PATH)/include -L $(BLAS_PATH) -lcnpy -lz -l$(BLAS_LIBRARY) -L $(CUDA_LIB64) -lcurand -lcusparse $(NVCC_ARCH_ARGS) -std=c++11
 
 clean:
 	rm -rf $(BIN_DIR)
