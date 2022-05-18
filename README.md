@@ -48,3 +48,21 @@ hidden_size     batch_size     time_steps     rnn_type     fwd_time (usec)  bwd_
   256             64            150               lstm       4868                    4714                       0               9582
 ```
 
+## Current Issues
+
+```
+In file included from <built-in>:2:
+/opt/rocm-5.1.1/llvm/lib/clang/14.0.0/include/opencl-c.h:5344:26: error: OpenCL extension 'cl_khr_fp64' is core feature or supported optional core feature - ignoring [-Werror,-Wpedantic-core-features]
+#pragma OPENCL EXTENSION cl_khr_fp64 : enable
+```
+
+```
+'+code-object-v3' is not a recognized feature for this target (ignoring feature)
+```
+
+```
+MIOpen Error: ../src/ocl/tensorocl.cpp:1404: 
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  MIOPEN failure: 3 in ./rnn_bench_rocm.cpp at line: 140
+```
+
