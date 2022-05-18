@@ -61,6 +61,8 @@ In file included from <built-in>:2:
 ```
 
 ```
+CHECK_MIOPEN_ERROR(miopenRNNForwardTraining(...)):
+
 MIOpen Error: ../src/ocl/tensorocl.cpp:1404: 
 terminate called after throwing an instance of 'std::runtime_error'
   what():  MIOPEN failure: 3 in ./rnn_bench_rocm.cpp at line: 140
