@@ -266,18 +266,19 @@ int main(int argc, char **argv) {
 
         int fwd_time, bwd_inputs_time, bwd_params_time;
 
-        std::tie(fwd_time, bwd_inputs_time, bwd_params_time) =
-            time_rnn<float>(hidden_size, batch_size, time_steps, rnn_type, inference);
-
         std::cout << std::setw(5)  << hidden_size;
         std::cout << std::setw(15) << batch_size;
         std::cout << std::setw(15) << time_steps;
         std::cout << std::setw(19) << rnn_type;
+        std::cout << std::flush;
+
+        std::tie(fwd_time, bwd_inputs_time, bwd_params_time) =
+            time_rnn<float>(hidden_size, batch_size, time_steps, rnn_type, inference);
+
         std::cout << std::setw(11) << std::setprecision(7) << fwd_time;
         std::cout << std::setw(24) << std::setprecision(7) << bwd_inputs_time;
         std::cout << std::setw(24) << std::setprecision(7) << bwd_params_time;
         std::cout << std::setw(19) << std::setprecision(8) << fwd_time + bwd_inputs_time + bwd_params_time;
-
         std::cout << std::endl;
 
         total_fwd_time += fwd_time;
