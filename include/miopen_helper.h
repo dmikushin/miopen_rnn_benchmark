@@ -11,8 +11,8 @@
 void throw_miopen_err(miopenStatus_t status, int line, const char* filename) {
     if (status != miopenStatusSuccess) {
         std::stringstream ss;
-        ss << "MIOPEN failure: " << status <<
-              " in " << filename << " at line: " << line << std::endl;
+        ss << "MIOPEN failure: \"" << miopenGetErrorString(status) << "\" (" << status <<
+              ") in " << filename << " at line: " << line << std::endl;
         throw std::runtime_error(ss.str());
     }
 }
